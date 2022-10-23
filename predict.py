@@ -19,12 +19,15 @@ class Predictor(BasePredictor):
 
     def predict(
         self,
-        s: str
+        model: str,
+        input: str
     ) -> Any:
         """Run a single prediction on the model"""
         try:
-            reconstruct()
-            return "Hekko World Sample cog"
+            print(model)
+            print(input)
+            reconstruct(model, input)
+            return "Hello World Sample cog"
             # return Output(file=talknet_predict.generate_audio(voice + "|default", None, s, [], 0, None, None, None))
         except Exception as e:
             return f"Error: {e}"

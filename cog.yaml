@@ -32,11 +32,11 @@ build:
     - "toolz==0.11.2"
     - "torch==1.10.2"
     - "torchvision==0.11.3"
-    - "git+https://github.com/facebookresearch/pytorch3d.git@stable"
+    # - "git+https://github.com/facebookresearch/pytorch3d.git@stable"
 
   # commands run after the environment is setup
-  # run:
-  #   - "pip install --no-index --no-cache-dir pytorch3d -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py38_cu113_pyt1110/download.html"
+  run:
+    - "pip install git+https://github.com/facebookresearch/pytorch3d.git@stable"
     # - "echo another command if needed"
 
 # predict.py defines how predictions are run on your model

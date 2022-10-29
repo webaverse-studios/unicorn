@@ -5,6 +5,11 @@ from cog import BasePredictor, BaseModel, File
 from reconstruct_cog import reconstruct 
 
 from typing import Any
+import torch 
+
+print('cuda status is',torch.cuda.is_available())
+
+
 # import unicorn here
 
 
@@ -24,8 +29,6 @@ class Predictor(BasePredictor):
     ) -> Any:
         """Run a single prediction on the model"""
         try:
-            print(model)
-            print(input)
             reconstruct(model, input)
             return "Hello World Sample cog"
             # return Output(file=talknet_predict.generate_audio(voice + "|default", None, s, [], 0, None, None, None))

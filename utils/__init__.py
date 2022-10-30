@@ -36,6 +36,15 @@ def get_files_from(dir_path, valid_extensions=None, recursive=False, sort=False)
     else:
         files = [f.absolute() for f in path.glob('*') if f.is_file()]
 
+    # it might be possible that path is a direct file
+    if len(files) is 0 and path.is_file():
+        files = [path.absolute()]
+
+
+    if len(files) is 0:
+        raise FileNotFoundError('{} does not exist'.format(path.absolute()))
+
+
     if valid_extensions is not None:
         valid_extensions = [valid_extensions] if isinstance(valid_extensions, str) else valid_extensions
         valid_extensions = ['.{}'.format(ext) if not ext.startswith('.') else ext for ext in valid_extensions]

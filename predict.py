@@ -1,7 +1,7 @@
 # Prediction interface for Cog ⚙️
 # https://github.com/replicate/cog/blob/main/docs/python.md
 
-from cog import BasePredictor, BaseModel, File
+from cog import BasePredictor, BaseModel, File, Input, Path
 from reconstruct_cog import reconstruct 
 
 from typing import Any
@@ -20,17 +20,14 @@ class Output(BaseModel):
 class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
-        # self.model = torch.load("./weights.pth")
 
     def predict(
         self,
         model: str,
-        input: str
+        input: Path = Input(description="Image to classify")
     ) -> Any:
         """Run a single prediction on the model"""
-        try:
-            reconstruct(model, input)
-            return "Hello World Sample cog"
-            # return Output(file=talknet_predict.generate_audio(voice + "|default", None, s, [], 0, None, None, None))
+        try:            
+            return Output(file=reconstruct(model, input))
         except Exception as e:
             return f"Error: {e}"

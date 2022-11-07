@@ -27,7 +27,13 @@ class Predictor(BasePredictor):
         input: Path = Input(description="Image to classify")
     ) -> Any:
         """Run a single prediction on the model"""
-        try:            
-            return Output(file=reconstruct(model, input))
+        try:
+            output = []        
+            d = reconstruct(model, input)    
+
+            output.append(d['obj'])
+            output.append(d['png'])
+            
+            return output
         except Exception as e:
             return f"Error: {e}"

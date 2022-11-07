@@ -40,7 +40,7 @@ def reconstruct(model, input):
     print_log(f"Found {len(data)} images in the folder")
     print_log("Starting reconstruction...")
 
-    out = path_mkdir('demo_rec')
+    out = '/tmp'
     reconstruction_count = 0
     for j, (inp, _) in enumerate(loader):
         imgs = inp['imgs'].to(device)
@@ -61,11 +61,11 @@ def reconstruct(model, input):
     print_log("Done!")
 
     if reconstruction_count > 0:
-        path = Path(out / f'{filename}_mesh.obj')
-        print('Reconstructed is file =', path.is_file())
-        buffer = BytesIO(path.read_bytes())
-        path.unlink()
+        d = dict()
+
+        d['obj'] = Path(out / f'{filename}_mesh.obj')
+        d['png'] = Path(out / f'{filename}_mesh.png')
+
         Path(out / f'{filename}_mesh.mtl').unlink()
-        Path(out / f'{filename}_mesh.png').unlink()
-        return buffer
+        return d
 

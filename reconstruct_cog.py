@@ -56,16 +56,16 @@ def reconstruct(model, input):
             reconstruction_count += 1
             mcenter = normalize(meshes[k])
             filename = str(uuid.uuid4())
-            save_mesh_as_obj(mcenter, out / f'{filename}_mesh.obj')
+            save_mesh_as_obj(mcenter,f'{out}/{filename}_mesh.obj')
 
     print_log("Done!")
 
     if reconstruction_count > 0:
+
         d = dict()
+        d['obj'] = f'{out}/{filename}_mesh.obj'
+        d['png'] = f'{out}/{filename}_mesh.png'
 
-        d['obj'] = Path(out / f'{filename}_mesh.obj')
-        d['png'] = Path(out / f'{filename}_mesh.png')
-
-        Path(out / f'{filename}_mesh.mtl').unlink()
+        Path(f'{out}/{filename}_mesh.mtl').unlink()
         return d
 

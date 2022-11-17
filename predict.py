@@ -31,8 +31,8 @@ class Predictor(BasePredictor):
             output = []        
             d = reconstruct(model, input)    
 
-            output.append(d['obj'])
-            output.append(d['png'])
+            output.append(Path(f'{d["obj"]}'))
+            output.append(Path(f'{d["png"]}'))
             
             return output
         except Exception as e:
